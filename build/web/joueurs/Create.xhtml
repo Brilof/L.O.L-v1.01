@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateJoueursTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateJoueursLabel_idJoueur}" for="idJoueur" />
+                    <h:inputText id="idJoueur" value="#{joueursController.selected.idJoueur}" title="#{bundle.CreateJoueursTitle_idJoueur}" required="true" requiredMessage="#{bundle.CreateJoueursRequiredMessage_idJoueur}"/>
+                    <h:outputLabel value="#{bundle.CreateJoueursLabel_pseudo}" for="pseudo" />
+                    <h:inputText id="pseudo" value="#{joueursController.selected.pseudo}" title="#{bundle.CreateJoueursTitle_pseudo}" required="true" requiredMessage="#{bundle.CreateJoueursRequiredMessage_pseudo}"/>
+                    <h:outputLabel value="#{bundle.CreateJoueursLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{joueursController.selected.numero}" title="#{bundle.CreateJoueursTitle_numero}" required="true" requiredMessage="#{bundle.CreateJoueursRequiredMessage_numero}"/>
+                    <h:outputLabel value="#{bundle.CreateJoueursLabel_poste}" for="poste" />
+                    <h:inputText id="poste" value="#{joueursController.selected.poste}" title="#{bundle.CreateJoueursTitle_poste}" />
+                    <h:outputLabel value="#{bundle.CreateJoueursLabel_butMarques}" for="butMarques" />
+                    <h:inputText id="butMarques" value="#{joueursController.selected.butMarques}" title="#{bundle.CreateJoueursTitle_butMarques}" />
+                    <h:outputLabel value="#{bundle.CreateJoueursLabel_idEquipe}" for="idEquipe" />
+                    <h:selectOneMenu id="idEquipe" value="#{joueursController.selected.idEquipe}" title="#{bundle.CreateJoueursTitle_idEquipe}" >
+                        <f:selectItems value="#{equipesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{joueursController.create}" value="#{bundle.CreateJoueursSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{joueursController.prepareList}" value="#{bundle.CreateJoueursShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateJoueursIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

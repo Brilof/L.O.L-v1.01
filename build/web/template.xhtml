@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://w3.org"
+      xmlns:ui="http://jcp.org"
+      xmlns:h="http://jcp.org"
+      xmlns:p="http://primefaces.org">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Ligue LOL</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+    </h:head>
+
+    <h:body style="margin:0; padding:0; background-color:#f8f9fa;">
+
+        <!-- Barre de navigation supérieure fixe (Style Google Bar) -->
+        <h:form id="menuForm">
+            <p:megaMenu orientation="horizontal" style="margin-bottom:20px; border-radius: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background-color:#1f70c1 !important; border:none; padding: 5px 10px;">
+                <p:menuitem value="🏆 LIGUE AMATEUR LOL" url="#{request.contextPath}/faces/index.xhtml" style="font-weight:bold; color:white !important; font-size:16px; margin-right:20px; text-shadow: 0 1px 2px rgba(0,0,0,0.2);"/>
+                <p:menuitem value="Matchs" icon="pi pi-calendar" url="#{request.contextPath}/faces/matchs/List.xhtml" style="color:white !important; font-weight:500;"/>
+                <p:menuitem value="Classement" icon="pi pi-list" url="#{request.contextPath}/faces/classement/List.xhtml" style="color:white !important; font-weight:500;"/>
+                <p:menuitem value="Joueurs" icon="pi pi-users" url="#{request.contextPath}/faces/joueurs/List.xhtml" style="color:white !important; font-weight:500;"/>
+                <p:menuitem value="Équipes" icon="pi pi-shield" url="#{request.contextPath}/faces/equipes/List.xhtml" style="color:white !important; font-weight:500;"/>
+                <p:menuitem value="Mercato" icon="pi pi-refresh" url="#{request.contextPath}/faces/historique_transfert/List.xhtml" style="color:white !important; font-weight:500;"/>
+                <p:menuitem value="Saisons" icon="pi pi-cog" url="#{request.contextPath}/faces/saison/List.xhtml" style="color:white !important; font-weight:500;"/>
+            </p:megaMenu>
+        </h:form>
+
+
+        <!-- Conteneur dynamique où s'injectent les pages (index, List, Edit...) -->
+        <div style="padding: 0 20px;">
+            <ui:insert name="body">Default Body</ui:insert>
+        </div>
+
+    </h:body>
+</html>

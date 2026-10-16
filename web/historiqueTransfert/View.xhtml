@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHistoriqueTransfertTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHistoriqueTransfertLabel_idTransfert}"/>
+                    <h:outputText value="#{historiqueTransfertController.selected.idTransfert}" title="#{bundle.ViewHistoriqueTransfertTitle_idTransfert}"/>
+                    <h:outputText value="#{bundle.ViewHistoriqueTransfertLabel_dateTransfert}"/>
+                    <h:outputText value="#{historiqueTransfertController.selected.dateTransfert}" title="#{bundle.ViewHistoriqueTransfertTitle_dateTransfert}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHistoriqueTransfertLabel_idLastClub}"/>
+                    <h:outputText value="#{historiqueTransfertController.selected.idLastClub}" title="#{bundle.ViewHistoriqueTransfertTitle_idLastClub}"/>
+                    <h:outputText value="#{bundle.ViewHistoriqueTransfertLabel_idNewClub}"/>
+                    <h:outputText value="#{historiqueTransfertController.selected.idNewClub}" title="#{bundle.ViewHistoriqueTransfertTitle_idNewClub}"/>
+                    <h:outputText value="#{bundle.ViewHistoriqueTransfertLabel_idJoueur}"/>
+                    <h:outputText value="#{historiqueTransfertController.selected.idJoueur}" title="#{bundle.ViewHistoriqueTransfertTitle_idJoueur}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{historiqueTransfertController.destroyAndView}" value="#{bundle.ViewHistoriqueTransfertDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHistoriqueTransfertEditLink}"/>
+                <br />
+                <h:commandLink action="#{historiqueTransfertController.prepareCreate}" value="#{bundle.ViewHistoriqueTransfertCreateLink}" />
+                <br />
+                <h:commandLink action="#{historiqueTransfertController.prepareList}" value="#{bundle.ViewHistoriqueTransfertShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHistoriqueTransfertIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://w3.org">
+<html xmlns="http://w3.org"
+      xmlns:ui="http://jcp.org"
+      xmlns:h="http://jcp.org"
+      xmlns:f="http://jcp.org"
+      xmlns:p="http://primefaces.org">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            
+            <!-- Cette balise force le chargement du moteur graphique de PrimeFaces -->
+            <h:outputStylesheet library="primefaces" name="primefaces.css" />
+            
+            <div style="max-width: 1000px; margin: 20px auto; padding: 0 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                
+                <!-- Bannière d'accueil -->
+                <div style="background: linear-gradient(135deg, #1f70c1 0%, #124a87 100%); color: white; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                    <h:outputText value="⚽ BIENVENUE SUR L'APPLICATION LIGUE LOL" style="font-size: 26px; font-weight: bold; display: block; margin-bottom: 5px;"/>
+                    <h:outputText value="Espace de pilotage automatisé du championnat et du mercato" style="font-size: 14px; opacity: 0.9; display: block;"/>
+                </div>
+
+                <!-- Grille des modules -->
+                <h:form id="welcomeForm">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                        
+                        <!-- Carte 1 : Matchs -->
+                        <div style="background: white; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #1f70c1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <i class="pi pi-calendar" style="font-size: 2.5rem; color: #1f70c1; margin-bottom: 15px;"></i>
+                                <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">Calendrier &amp; Matchs</div>
+                                <p style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 20px;">Planifiez les rencontres aller-retour et enregistrez les scores finaux.</p>
+                            </div>
+                           <a href="#{request.contextPath}/faces/matchs/List.xhtml" style="background-color: #1f70c1; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; text-decoration: none; display: block;">Accéder aux Matchs</a>
+
+                        </div>
+
+                        <!-- Carte 2 : Classement -->
+                        <div style="background: white; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #4CAF50; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <i class="pi pi-list" style="font-size: 2.5rem; color: #4CAF50; margin-bottom: 15px;"></i>
+                                <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">Tableau de Classement</div>
+                                <p style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 20px;">Suivez l'évolution des points, victoires, défaites et fiches de buts.</p>
+                            </div>
+                            <a href="#{request.contextPath}/faces/classement/List.xhtml" style="background-color: #4CAF50; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; text-decoration: none; display: block;">Voir le Classement</a>
+
+                        </div>
+
+                        <!-- Carte 3 : Joueurs -->
+                        <div style="background: white; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #9c27b0; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <i class="pi pi-users" style="font-size: 2.5rem; color: #9c27b0; margin-bottom: 15px;"></i>
+                                <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">Gestion des Joueurs</div>
+                                <p style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 20px;">Gérez les effectifs, profils des joueurs et les buteurs de la ligue.</p>
+                            </div>
+                            <a href="#{request.contextPath}/faces/joueurs/List.xhtml" style="background-color: #9c27b0; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; text-decoration: none; display: block;">Gérer les Joueurs</a>
+
+                        </div>
+
+                        <!-- Carte 4 : Équipes -->
+                        <div style="background: white; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #607d8b; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <i class="pi pi-shield" style="font-size: 2.5rem; color: #607d8b; margin-bottom: 15px;"></i>
+                                <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">Clubs &amp; Équipes</div>
+                                <p style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 20px;">Enregistrez les équipes, leurs villes et désignez les capitaines officiels.</p>
+                            </div>
+                            <a href="#{request.contextPath}/faces/equipes/List.xhtml" style="background-color: #607d8b; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; text-decoration: none; display: block;">Voir les Équipes</a>
+
+                        </div>
+
+                        <!-- Carte 5 : Mercato -->
+                        <div style="background: white; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #ff9800; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <i class="pi pi-refresh" style="font-size: 2.5rem; color: #ff9800; margin-bottom: 15px;"></i>
+                                <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">Marché du Mercato</div>
+                                <p style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 20px;">Consultez l'historique complet et traçable des transferts de joueurs.</p>
+                            </div>
+                            <a href="#{request.contextPath}/faces/historique_transfert/List.xhtml" style="background-color: #ff9800; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; text-decoration: none; display: block;">Historique Mercato</a>
+
+                        </div>
+
+                        <!-- Carte 6 : Saisons -->
+                        <div style="background: white; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #f44336; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <i class="pi pi-cog" style="font-size: 2.5rem; color: #f44336; margin-bottom: 15px;"></i>
+                                <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;">Contrôle Saisons</div>
+                                <p style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 20px;">Ouvrez ou fermez le mercato pour bloquer/autoriser les mutations.</p>
+                            </div>
+                            <a href="#{request.contextPath}/faces/saison/List.xhtml" style="background-color: #f44336; color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; text-decoration: none; display: block;">Gérer les Saisons</a>
+
+                        </div>
+
+                    </div>
+                </h:form>
+            </div>
+            
+        </ui:define>
+    </ui:composition>
+</html>

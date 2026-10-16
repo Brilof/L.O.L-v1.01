@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+    
+     <p:commandButton action="#{saisonController.forcerClotureSaison()}" 
+                 value="🔓 Ouvrir le Mercato (Fin de saison)" 
+                 ajax="false" 
+                 style="background-color: #ff9800; color: white; margin-right: 10px;" />
+
+     <p:commandButton action="#{saisonController.forcerDemarrageSaison('Saison 2026')}" 
+                 value="🔒 Fermer le Mercato (Lancer Championnat)" 
+                 ajax="false" 
+                 style="background-color: #1e88e5; color: white;" />
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSaisonTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSaisonEmpty}" rendered="#{saisonController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{saisonController.items.rowCount > 0}">
+                    <h:outputText value="#{saisonController.pagination.pageFirstItem + 1}..#{saisonController.pagination.pageLastItem + 1}/#{saisonController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{saisonController.previous}" value="#{bundle.Previous} #{saisonController.pagination.pageSize}" rendered="#{saisonController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{saisonController.next}" value="#{bundle.Next} #{saisonController.pagination.pageSize}" rendered="#{saisonController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{saisonController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSaisonTitle_idSaison}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idSaison}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSaisonTitle_nomSaison}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nomSaison}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSaisonTitle_statutSaison}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.statutSaison}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{saisonController.prepareView}" value="#{bundle.ListSaisonViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{saisonController.prepareEdit}" value="#{bundle.ListSaisonEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{saisonController.destroy}" value="#{bundle.ListSaisonDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{saisonController.prepareCreate}" value="#{bundle.ListSaisonCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSaisonIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMatchsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_idMatch}" for="idMatch" />
+                    <h:inputText id="idMatch" value="#{matchsController.selected.idMatch}" title="#{bundle.EditMatchsTitle_idMatch}" required="true" requiredMessage="#{bundle.EditMatchsRequiredMessage_idMatch}"/>
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_dateMatch}" for="dateMatch" />
+                    <h:inputText id="dateMatch" value="#{matchsController.selected.dateMatch}" title="#{bundle.EditMatchsTitle_dateMatch}" required="true" requiredMessage="#{bundle.EditMatchsRequiredMessage_dateMatch}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_arbitre}" for="arbitre" />
+                    <h:inputText id="arbitre" value="#{matchsController.selected.arbitre}" title="#{bundle.EditMatchsTitle_arbitre}" required="true" requiredMessage="#{bundle.EditMatchsRequiredMessage_arbitre}"/>
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_butsDomicile}" for="butsDomicile" />
+                    <h:inputText id="butsDomicile" value="#{matchsController.selected.butsDomicile}" title="#{bundle.EditMatchsTitle_butsDomicile}" />
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_butsExterieur}" for="butsExterieur" />
+                    <h:inputText id="butsExterieur" value="#{matchsController.selected.butsExterieur}" title="#{bundle.EditMatchsTitle_butsExterieur}" />
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_statut}" for="statut" />
+                    <h:inputText id="statut" value="#{matchsController.selected.statut}" title="#{bundle.EditMatchsTitle_statut}" />
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_idEquipeDomicile}" for="idEquipeDomicile" />
+                    <h:selectOneMenu id="idEquipeDomicile" value="#{matchsController.selected.idEquipeDomicile}" title="#{bundle.EditMatchsTitle_idEquipeDomicile}" >
+                        <f:selectItems value="#{equipesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_idEquipeExterieur}" for="idEquipeExterieur" />
+                    <h:selectOneMenu id="idEquipeExterieur" value="#{matchsController.selected.idEquipeExterieur}" title="#{bundle.EditMatchsTitle_idEquipeExterieur}" >
+                        <f:selectItems value="#{equipesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_idSaison}" for="idSaison" />
+                    <h:selectOneMenu id="idSaison" value="#{matchsController.selected.idSaison}" title="#{bundle.EditMatchsTitle_idSaison}" >
+                        <f:selectItems value="#{saisonController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMatchsLabel_idEquipeVainqueur}" for="idEquipeVainqueur" />
+                    <h:selectOneMenu id="idEquipeVainqueur" value="#{matchsController.selected.idEquipeVainqueur}" title="#{bundle.EditMatchsTitle_idEquipeVainqueur}" >
+                        <f:selectItems value="#{equipesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{matchsController.update}" value="#{bundle.EditMatchsSaveLink}"/>
+                <p:commandButton action="#{matchsController.validerEtCloturerMatch()}" 
+                 value="🏆 Valider le Score final (SofaScore)" 
+                 ajax="false"
+                 styleClass="ui-button-success" 
+                 style="margin-left: 10px; background-color: #4CAF50; color: white; font-weight: bold; border: none; padding: 5px 15px; border-radius: 4px;" />
+
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMatchsViewLink}"/>
+                <br />
+                <h:commandLink action="#{matchsController.prepareList}" value="#{bundle.EditMatchsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMatchsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewJoueursTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewJoueursLabel_idJoueur}"/>
+                    <h:outputText value="#{joueursController.selected.idJoueur}" title="#{bundle.ViewJoueursTitle_idJoueur}"/>
+                    <h:outputText value="#{bundle.ViewJoueursLabel_pseudo}"/>
+                    <h:outputText value="#{joueursController.selected.pseudo}" title="#{bundle.ViewJoueursTitle_pseudo}"/>
+                    <h:outputText value="#{bundle.ViewJoueursLabel_numero}"/>
+                    <h:outputText value="#{joueursController.selected.numero}" title="#{bundle.ViewJoueursTitle_numero}"/>
+                    <h:outputText value="#{bundle.ViewJoueursLabel_poste}"/>
+                    <h:outputText value="#{joueursController.selected.poste}" title="#{bundle.ViewJoueursTitle_poste}"/>
+                    <h:outputText value="#{bundle.ViewJoueursLabel_butMarques}"/>
+                    <h:outputText value="#{joueursController.selected.butMarques}" title="#{bundle.ViewJoueursTitle_butMarques}"/>
+                    <h:outputText value="#{bundle.ViewJoueursLabel_idEquipe}"/>
+                    <h:outputText value="#{joueursController.selected.idEquipe}" title="#{bundle.ViewJoueursTitle_idEquipe}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{joueursController.destroyAndView}" value="#{bundle.ViewJoueursDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewJoueursEditLink}"/>
+                <br />
+                <h:commandLink action="#{joueursController.prepareCreate}" value="#{bundle.ViewJoueursCreateLink}" />
+                <br />
+                <h:commandLink action="#{joueursController.prepareList}" value="#{bundle.ViewJoueursShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewJoueursIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

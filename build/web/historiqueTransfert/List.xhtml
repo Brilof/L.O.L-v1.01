@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHistoriqueTransfertTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListHistoriqueTransfertEmpty}" rendered="#{historiqueTransfertController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{historiqueTransfertController.items.rowCount > 0}">
+                    <h:outputText value="#{historiqueTransfertController.pagination.pageFirstItem + 1}..#{historiqueTransfertController.pagination.pageLastItem + 1}/#{historiqueTransfertController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{historiqueTransfertController.previous}" value="#{bundle.Previous} #{historiqueTransfertController.pagination.pageSize}" rendered="#{historiqueTransfertController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{historiqueTransfertController.next}" value="#{bundle.Next} #{historiqueTransfertController.pagination.pageSize}" rendered="#{historiqueTransfertController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{historiqueTransfertController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHistoriqueTransfertTitle_idTransfert}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTransfert}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHistoriqueTransfertTitle_dateTransfert}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateTransfert}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHistoriqueTransfertTitle_idLastClub}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLastClub}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHistoriqueTransfertTitle_idNewClub}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNewClub}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHistoriqueTransfertTitle_idJoueur}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idJoueur}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{historiqueTransfertController.prepareView}" value="#{bundle.ListHistoriqueTransfertViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{historiqueTransfertController.prepareEdit}" value="#{bundle.ListHistoriqueTransfertEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{historiqueTransfertController.destroy}" value="#{bundle.ListHistoriqueTransfertDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{historiqueTransfertController.prepareCreate}" value="#{bundle.ListHistoriqueTransfertCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListHistoriqueTransfertIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

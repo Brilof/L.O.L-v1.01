@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://w3.org">
+<html xmlns="http://w3.org"
+      xmlns:ui="http://jcp.org"
+      xmlns:h="http://jcp.org"
+      xmlns:f="http://jcp.org"
+      xmlns:p="http://primefaces.org">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            <h:form id="ClassementListForm">
+                
+                <p:outputPanel style="max-width: 900px; margin: 20px auto;">
+                    
+                    <!-- Titre Moderne -->
+                    <div style="margin-bottom: 20px;">
+                        <h:outputText value="🏆 Classement Général - Ligue LOL" style="font-size:26px; font-weight:bold; color:#1f70c1;"/>
+                        <p:separator style="margin-top:10px; border-color:#e0e0e0;" />
+                    </div>
+
+                    <!-- Tableau PrimeFaces style Google/SofaScore -->
+               <p:dataTable value="#{classementController.items}" var="item" 
+             sortBy="#{item.point}" sortOrder="descending"
+             styleClass="ui-datatable-striped ui-datatable-sm"
+             rowIndexVar="rowIndex"
+             rowStyleClass="#{rowIndex == 0 ? 'font-weight: bold; background-color: #e8f5e9 !important;' : ''}">
+
+    <!-- 1. LA COLONNE RANG SE TROUVE ICI -->
+    <p:column headerText="Rang" style="width:50px; text-align:center;">
+        <h:outputText value="#{rowIndex + 1}" />
+    </p:column>
+
+    <!-- 2. LA COLONNE CLUB (AVEC LE BADGE LEADER) -->
+    <p:column headerText="Club" style="text-align:left; font-size:15px;">
+        <i class="pi pi-shield" style="margin-right:10px; color:#555; vertical-align:middle;"></i>
+        <h:outputText value="#{item.idEquipe.nom}" style="vertical-align:middle;" />
+        
+        <h:panelGroup rendered="#{rowIndex == 0}">
+            <span style="background:#4CAF50; color:white; font-size:10px; padding:2px 6px; border-radius:10px; margin-left:10px;">Leader</span>
+        </h:panelGroup>
+    </p:column>
+
+
+                        <!-- Statistiques numériques compressées -->
+                        <p:column headerText="MJ" style="width:60px; text-align:center;" title="Matchs Joués">
+                            <h:outputText value="#{item.matchsJoues}" />
+                        </p:column>
+
+                        <p:column headerText="V" style="width:50px; text-align:center; color:#4CAF50;" title="Victoires">
+                            <h:outputText value="#{item.victoires}" />
+                        </p:column>
+
+                        <p:column headerText="N" style="width:50px; text-align:center; color:#FFC107;" title="Matchs Nuls">
+                            <h:outputText value="#{item.nuls}" />
+                        </p:column>
+
+                        <p:column headerText="D" style="width:50px; text-align:center; color:#F44336;" title="Défaites">
+                            <h:outputText value="#{item.defaites}" />
+                        </p:column>
+
+                        <p:column headerText="BP" style="width:50px; text-align:center;" title="Buts Pour (Marqués)">
+                            <h:outputText value="#{item.butsMarques}" />
+                        </p:column>
+
+                        <p:column headerText="BC" style="width:50px; text-align:center;" title="Buts Contre (Encaissés)">
+                            <h:outputText value="#{item.butsEncaisses}" />
+                        </p:column>
+
+                        <!-- Différence de buts calculée à la volée -->
+                        <p:column headerText="DB" style="width:60px; text-align:center; font-weight:bold;" title="Différence de Buts">
+                            <h:outputText value="#{item.butsMarques - item.butsEncaisses}" 
+                                          style="color: #{item.butsMarques - item.butsEncaisses &gt; 0 ? '#4CAF50' : (item.butsMarques - item.butsEncaisses &lt; 0 ? '#F44336' : '#666')};" />
+                        </p:column>
+
+                        <!-- Colonne Points Majeure -->
+                        <p:column headerText="PTS" style="width:70px; text-align:center; font-size:16px; font-weight:bold; background:#f4f6f9;" sortBy="#{item.point}">
+                            <h:outputText value="#{item.point}" />
+                        </p:column>
+
+                    </p:dataTable>
+                    
+                </p:outputPanel>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

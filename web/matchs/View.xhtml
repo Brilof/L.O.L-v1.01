@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMatchsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMatchsLabel_idMatch}"/>
+                    <h:outputText value="#{matchsController.selected.idMatch}" title="#{bundle.ViewMatchsTitle_idMatch}"/>
+                    <h:outputText value="#{bundle.ViewMatchsLabel_dateMatch}"/>
+                    <h:outputText value="#{matchsController.selected.dateMatch}" title="#{bundle.ViewMatchsTitle_dateMatch}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMatchsLabel_arbitre}"/>
+                    <h:outputText value="#{matchsController.selected.arbitre}" title="#{bundle.ViewMatchsTitle_arbitre}"/>
+                    <h:outputText value="#{bundle.ViewMatchsLabel_butsDomicile}"/>
+                    <h:outputText value="#{matchsController.selected.butsDomicile}" title="#{bundle.ViewMatchsTitle_butsDomicile}"/>
+                    <h:outputText value="#{bundle.ViewMatchsLabel_butsExterieur}"/>
+                    <h:outputText value="#{matchsController.selected.butsExterieur}" title="#{bundle.ViewMatchsTitle_butsExterieur}"/>
+                    <h:outputText value="#{bundle.ViewMatchsLabel_statut}"/>
+                    <h:outputText value="#{matchsController.selected.statut}" title="#{bundle.ViewMatchsTitle_statut}"/>
+                    <h:outputText value="#{bundle.ViewMatchsLabel_idEquipeDomicile}"/>
+                    <h:outputText value="#{matchsController.selected.idEquipeDomicile}" title="#{bundle.ViewMatchsTitle_idEquipeDomicile}"/>
+                    <h:outputText value="#{bundle.ViewMatchsLabel_idEquipeExterieur}"/>
+                    <h:outputText value="#{matchsController.selected.idEquipeExterieur}" title="#{bundle.ViewMatchsTitle_idEquipeExterieur}"/>
+                    <h:outputText value="#{bundle.ViewMatchsLabel_idSaison}"/>
+                    <h:outputText value="#{matchsController.selected.idSaison}" title="#{bundle.ViewMatchsTitle_idSaison}"/>
+                    <h:outputText value="#{bundle.ViewMatchsLabel_idEquipeVainqueur}"/>
+                    <h:outputText value="#{matchsController.selected.idEquipeVainqueur}" title="#{bundle.ViewMatchsTitle_idEquipeVainqueur}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{matchsController.destroyAndView}" value="#{bundle.ViewMatchsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMatchsEditLink}"/>
+                <br />
+                <h:commandLink action="#{matchsController.prepareCreate}" value="#{bundle.ViewMatchsCreateLink}" />
+                <br />
+                <h:commandLink action="#{matchsController.prepareList}" value="#{bundle.ViewMatchsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMatchsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

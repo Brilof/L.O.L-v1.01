@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditClassementTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditClassementLabel_idEquipe}" for="idEquipe" />
+                    <h:inputText id="idEquipe" value="#{classementController.selected.idEquipe}" title="#{bundle.EditClassementTitle_idEquipe}" required="true" requiredMessage="#{bundle.EditClassementRequiredMessage_idEquipe}"/>
+                    <h:outputLabel value="#{bundle.EditClassementLabel_matchJoues}" for="matchJoues" />
+                    <h:inputText id="matchJoues" value="#{classementController.selected.matchJoues}" title="#{bundle.EditClassementTitle_matchJoues}" />
+                    <h:outputLabel value="#{bundle.EditClassementLabel_victoires}" for="victoires" />
+                    <h:inputText id="victoires" value="#{classementController.selected.victoires}" title="#{bundle.EditClassementTitle_victoires}" />
+                    <h:outputLabel value="#{bundle.EditClassementLabel_nulls}" for="nulls" />
+                    <h:inputText id="nulls" value="#{classementController.selected.nulls}" title="#{bundle.EditClassementTitle_nulls}" />
+                    <h:outputLabel value="#{bundle.EditClassementLabel_defaites}" for="defaites" />
+                    <h:inputText id="defaites" value="#{classementController.selected.defaites}" title="#{bundle.EditClassementTitle_defaites}" />
+                    <h:outputLabel value="#{bundle.EditClassementLabel_butsMarques}" for="butsMarques" />
+                    <h:inputText id="butsMarques" value="#{classementController.selected.butsMarques}" title="#{bundle.EditClassementTitle_butsMarques}" />
+                    <h:outputLabel value="#{bundle.EditClassementLabel_butsEncaisses}" for="butsEncaisses" />
+                    <h:inputText id="butsEncaisses" value="#{classementController.selected.butsEncaisses}" title="#{bundle.EditClassementTitle_butsEncaisses}" />
+                    <h:outputLabel value="#{bundle.EditClassementLabel_point}" for="point" />
+                    <h:inputText id="point" value="#{classementController.selected.point}" title="#{bundle.EditClassementTitle_point}" />
+                    <h:outputLabel value="#{bundle.EditClassementLabel_equipes}" for="equipes" />
+                    <h:selectOneMenu id="equipes" value="#{classementController.selected.equipes}" title="#{bundle.EditClassementTitle_equipes}" required="true" requiredMessage="#{bundle.EditClassementRequiredMessage_equipes}">
+                        <f:selectItems value="#{equipesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{classementController.update}" value="#{bundle.EditClassementSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditClassementViewLink}"/>
+                <br />
+                <h:commandLink action="#{classementController.prepareList}" value="#{bundle.EditClassementShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditClassementIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
